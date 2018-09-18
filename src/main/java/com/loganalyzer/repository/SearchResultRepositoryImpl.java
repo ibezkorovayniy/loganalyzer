@@ -18,29 +18,26 @@ public class SearchResultRepositoryImpl implements SearchResultRepository {
 
     @Autowired
     private Environment env;
-    private File file;
-    private SearchResult searchResult = new SearchResult();
 
     @Override
     public SearchResult findByQuery(String query) {
         String path = env.getProperty("log.path");
-        if(path != null && !path.isEmpty()) {
-            file = new File(path);
-        }
+        File file = new File(path);
         List<Line> lines = new ArrayList<>();
         int lineCount = 0;
 
         try(BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String tempStr;
-            while((tempStr = reader.readLine()) != null) {
+            String currentLine;
+            while((currentLine = reader.readLine()) != null) {
                 lineCount++;
-                if(tempStr.contains(query)) {
-                    lines.add(new Line(lineCount, tempStr));
+                if(currentLine.contains(query)) {
+                    lines.add(new Line(lineCount, currentLine));
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException("File not found", e);
         }
+        SearchResult searchResult = new SearchResult();
         searchResult.setResults(lines);
         searchResult.setCount(lines.size());
         return searchResult;

@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 public class SearchResultServiceImplTest {
@@ -49,7 +49,7 @@ public class SearchResultServiceImplTest {
     }
 
     @Test
-    public void whenContaineQuery_thenLineShouldBeFound() {
+    public void whenContainsQuery_thenLineShouldBeFound() {
         String query = "info";
         SearchResult found = searchResultService.findByQuery(query);
         assertTrue(found.getResults().get(0).getValue().contains(query));
