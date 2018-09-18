@@ -3,6 +3,7 @@ package com.loganalyzer.repository;
 import com.loganalyzer.model.Line;
 import com.loganalyzer.model.SearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Repository;
 
@@ -19,9 +20,11 @@ public class SearchResultRepositoryImpl implements SearchResultRepository {
     @Autowired
     private Environment env;
 
+    @Value("${log.path}")
+    private String path;
+
     @Override
     public SearchResult findByQuery(String query) {
-        String path = env.getProperty("log.path");
         File file = new File(path);
         List<Line> lines = new ArrayList<>();
         int lineCount = 0;
