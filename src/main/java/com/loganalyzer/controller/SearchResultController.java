@@ -1,7 +1,7 @@
-package com.myloganalyzer.loganalyzer.controller;
+package com.loganalyzer.controller;
 
-import com.myloganalyzer.loganalyzer.model.Result;
-import com.myloganalyzer.loganalyzer.service.ResultService;
+import com.loganalyzer.model.SearchResult;
+import com.loganalyzer.service.SearchResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class ResultController {
+public class SearchResultController {
 
     @Autowired
-    private ResultService resultService;
+    private SearchResultService searchResultService;
 
     @GetMapping("/search")
-    public Result search(@RequestParam String q) {
+    public SearchResult search(@RequestParam String q) {
 
-        return resultService.findByParam(q);
+        return searchResultService.findByQuery(q);
     }
 }

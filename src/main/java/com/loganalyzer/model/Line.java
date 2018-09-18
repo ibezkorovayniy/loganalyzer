@@ -1,4 +1,4 @@
-package com.myloganalyzer.loganalyzer.model;
+package com.loganalyzer.model;
 
 public class Line {
 

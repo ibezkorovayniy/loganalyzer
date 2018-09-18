@@ -1,22 +1,23 @@
-package com.myloganalyzer.loganalyzer.model;
+package com.loganalyzer.model;
 
 import java.util.List;
 
-public class Result {
+public class SearchResult {
 
     private List<Line> results;
 
     private int count;
 
-    public Result() {
+    public SearchResult() {
+    }
+
+    public SearchResult(List<Line> results, int count) {
+        this.results = results;
+        this.count = count;
     }
 
     public List<Line> getResults() {
         return results;
-    }
-
-    public void addLine(Line line) {
-        results.add(line);
     }
 
     public void setResults(List<Line> results) {
